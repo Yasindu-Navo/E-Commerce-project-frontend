@@ -1,6 +1,7 @@
 import HomePage from "./pages/HomePage";
-import Checkout from "./pages/Checkout";
-import Orders from "./pages/Orders";
+import CheckoutPage from "./pages/checkout/CheckoutPage";
+import OrdersPage from "./pages/OrdersPage";
+import TrackingPage from "./pages/TrackingPage";
 import { BrowserRouter, Routes, Route } from "react-router";
 import "./App.css";
 
@@ -9,9 +10,9 @@ function App() {
     <>
       <Routes>
         <Route index element={<HomePage />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/tracking" element={<div>we</div>} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/orders" element={<OrdersPage />} />
+        <Route path="/tracking" element={< TrackingPage />} />
       </Routes>
     </>
   );
