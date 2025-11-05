@@ -2,6 +2,9 @@ import React from "react";
 import Header from "../components/Header";
 
 import "./HomePage.css";
+import checkmark from '../assets/images/icons/checkmark.png'
+
+import homeIcon from '../assets/images/home-favicon.png'
 
 function HomePage() {
   return (
@@ -10,7 +13,7 @@ function HomePage() {
       <link
         rel="icon"
         type="image/svg+xml"
-        href="images/home-favicon.png"
+        src={homeIcon}
       />
       <Header />
 
@@ -56,7 +59,7 @@ function HomePage() {
             <div className="product-spacer"></div>
 
             <div className="added-to-cart">
-              <img src="images/icons/checkmark.png" />
+              <img src={checkmark} />
               Added
             </div>
 
@@ -105,7 +108,7 @@ function HomePage() {
             <div className="product-spacer"></div>
 
             <div className="added-to-cart">
-              <img src="images/icons/checkmark.png" />
+              <img src={checkmark} />
               Added
             </div>
 
@@ -154,7 +157,7 @@ function HomePage() {
             <div className="product-spacer"></div>
 
             <div className="added-to-cart">
-              <img src="images/icons/checkmark.png" />
+              <img src={checkmark} />
               Added
             </div>
 

@@ -3,12 +3,13 @@ import CheckoutHeader from "./CheckoutHeader";
 import "./CheckoutPage.css";
 
 import { Link } from "react-router";
+import cartIcon from '../../assets/images/cart-favicon.png'
 
 function CheckoutPage() {
   return (
     <>
       <title>Checkout</title>
-      <link rel="icon" type="image/svg+xml" href="images/cart-favicon.png" />
+      <link rel="icon" type="image/svg+xml" src={cartIcon} />
 
       <CheckoutHeader />
 

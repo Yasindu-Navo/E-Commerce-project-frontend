@@ -3,10 +3,13 @@ import Header from "../components/Header";
 import "./TrackingPage.css";
 import { Link } from "react-router";
 
+import trackingIcon from '../assets/images/tracking-favicon.png'
+
 function TrackingPage() {
   return (
     <>
       <title>Tracking</title>
+       <link rel="icon" type="image/svg+xml" src={trackingIcon} />
 
       <Header />
 
