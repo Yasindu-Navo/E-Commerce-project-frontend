@@ -1,12 +1,17 @@
 import React from "react";
 import Header from "../components/Header";
 
-
 import "./HomePage.css";
 
 function HomePage() {
   return (
     <>
+      <title>HomePage</title>
+      <link
+        rel="icon"
+        type="image/svg+xml"
+        href="images/home-favicon.png"
+      />
       <Header />
 
       <div className="home-page">

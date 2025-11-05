@@ -7,6 +7,7 @@ function OrdersPage() {
   return (
     <>
       <title>Orders</title>
+       <link rel="icon" type="image/svg+xml" href="images/orders-favicon.png" />
 
       <Header />
 
