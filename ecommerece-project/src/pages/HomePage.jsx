@@ -2,13 +2,14 @@ import React from "react";
 import axios from "axios"
 import { useEffect,useState } from "react";
 import Header from "../components/Header";
+import { formatMoney } from "../utils/Money";
 
 import "./HomePage.css";
 import checkmark from "../assets/images/icons/checkmark.png";
 import homeIcon from "../assets/images/home-favicon.png";
 
 
-function HomePage({cart}) {
+function HomePage( { cart } ) {
   const [products, setProducts] = useState([]);
 
 
@@ -65,7 +66,7 @@ function HomePage({cart}) {
                   </div>
                 </div>
 
-                <div className="product-price">${ (product.priceCents/100).toFixed(2) }</div>
+                <div className="product-price">{ formatMoney(product.priceCents) }</div>
 
                 <div className="product-quantity-container">
                   <select>
