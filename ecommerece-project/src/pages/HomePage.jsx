@@ -18,12 +18,12 @@ function HomePage() {
     
     //here .get is asynchronous code segment that mean it take times to fetch data.
     // so when using .then other codes are running without waiting and inside the code in .then will execute after data fetched
-    axios.get("http://localhost:3000/api/products").then((response) => {
+    axios.get("api/products").then((response) => {
   
     setProducts(response.data)  
     })
     
-    axios.get("http://localhost:3000/api/cart-items").then((response) => {
+    axios.get("api/cart-items").then((response) => {
 
       setCart(response.data)
     })
