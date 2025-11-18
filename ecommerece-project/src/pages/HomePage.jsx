@@ -11,6 +11,8 @@ import homeIcon from "../assets/images/home-favicon.png";
 
 function HomePage( { cart } ) {
   const [products, setProducts] = useState([]);
+  
+
 
 
 
