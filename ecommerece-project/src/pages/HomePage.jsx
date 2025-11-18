@@ -8,9 +8,9 @@ import checkmark from "../assets/images/icons/checkmark.png";
 import homeIcon from "../assets/images/home-favicon.png";
 
 
-function HomePage() {
+function HomePage({cart}) {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
+
 
 
   useEffect(() => { //here useEffect use for getting response from BE only at once.
@@ -23,10 +23,7 @@ function HomePage() {
     setProducts(response.data)  
     })
     
-    axios.get("api/cart-items").then((response) => {
-
-      setCart(response.data)
-    })
+   
 },[])
 
 
