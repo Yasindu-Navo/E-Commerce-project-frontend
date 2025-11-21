@@ -33,6 +33,24 @@ function TrackingPage({ cart }) {
     return orderProduct.productId === productId;
   });
 
+
+  //calculate bar graph
+
+  let totalDeliveryTimeMs = orderProduct.estimatedDeliveryTimeMs - orderTrackingData.orderTimeMs; 
+
+
+  const timePassedMs = dayjs().valueOf() - orderTrackingData.orderTimeMs
+ // const timePassedMs = totalDeliveryTimeMs*0.4
+  let deliveryProgress = (timePassedMs / totalDeliveryTimeMs) * 100
+  
+  if (deliveryProgress > 100) {
+    deliveryProgress =100
+  }
+
+  console.log(`deliver ${deliveryProgress}`)
+
+
+
   return (
     <>
       <title>Tracking</title>
@@ -62,11 +80,11 @@ function TrackingPage({ cart }) {
           <div class="progress-labels-container">
             <div class="progress-label">Preparing</div>
             <div class="progress-label current-status">Shipped</div>
-            <div class="progress-label">Delivered</div>
+            <div class="progress-label">{deliveryProgress>=100 ? "Delivered" : "Arriving On"}</div>
           </div>
 
           <div class="progress-bar-container">
-            <div class="progress-bar"></div>
+            <div class="progress-bar" style={{width: `${deliveryProgress}%`}}></div>
           </div>
         </div>
       </div>
