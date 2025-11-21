@@ -2,11 +2,11 @@ import React from "react";
 import Header from "../components/Header";
 import "./PageNotFound.css";
 
-function NotFoundPage() {
+function NotFoundPage( {cart}) {
   return (
     <>
       <title>404</title>
-      <Header />
+      <Header cart={ cart} />
       <p
         className="message"
        
