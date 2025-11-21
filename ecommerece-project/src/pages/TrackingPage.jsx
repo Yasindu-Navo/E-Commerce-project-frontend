@@ -43,11 +43,27 @@ function TrackingPage({ cart }) {
  // const timePassedMs = totalDeliveryTimeMs*0.4
   let deliveryProgress = (timePassedMs / totalDeliveryTimeMs) * 100
   
-  if (deliveryProgress > 100) {
-    deliveryProgress =100
+
+ let isPreparaing =  false
+  let isShipped =  false
+  let isDelivered =  false
+
+  if (deliveryProgress >= 100) {
+    deliveryProgress = 100
+    
   }
 
-  console.log(`deliver ${deliveryProgress}`)
+ 
+
+  if (deliveryProgress < 33) {
+    isPreparaing = true
+  } else if(deliveryProgress >= 33 && deliveryProgress < 100) {
+    isShipped = true
+  } else if (deliveryProgress >= 100) {
+    isDelivered = true
+    isShipped = false
+    isPreparaing=false
+ }
 
 
 
@@ -78,9 +94,9 @@ function TrackingPage({ cart }) {
           />
 
           <div class="progress-labels-container">
-            <div class="progress-label">Preparing</div>
-            <div class="progress-label current-status">Shipped</div>
-            <div class="progress-label">{deliveryProgress>=100 ? "Delivered" : "Arriving On"}</div>
+            <div class={`progress-label ${isPreparaing && 'current-status'}`}>Preparing</div>
+            <div class={`progress-label ${isShipped && 'current-status'}`}>Shipped</div>
+            <div class={`progress-label ${isDelivered && 'current-status'}`}>{deliveryProgress>=100 ? "Delivered" : "Arriving On"}</div>
           </div>
 
           <div class="progress-bar-container">
