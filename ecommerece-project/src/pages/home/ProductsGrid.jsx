@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import checkmark from "../../assets/images/icons/checkmark.png"
 import { formatMoney } from '../../utils/Money';
+import axios from 'axios';
 
-function ProductsGrid( {products , }) {
+function ProductsGrid({ products, cartData }) {
+  const [quantity, setQuantity] = useState(1);
   return (
       <div className="products-grid">
           {/* convert each product into Html */}
@@ -38,7 +40,10 @@ function ProductsGrid( {products , }) {
                 </div>
 
                 <div className="product-quantity-container">
-                  <select>
+                  <select value={quantity}
+                    onChange={(e) => {
+                        e.target.value
+                      }}>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -59,7 +64,18 @@ function ProductsGrid( {products , }) {
                   Added
                 </div>
 
-                <button className="add-to-cart-button button-primary">
+                <button className="add-to-cart-button button-primary"
+                  onClick={async() => {
+                    
+                   await axios.post('api/cart-items', {
+                      productId: product.id,
+                      quantity:1
+                    })
+
+                    await cartData();
+
+                  }}
+                >
                   Add to Cart
                 </button>
               </div>
