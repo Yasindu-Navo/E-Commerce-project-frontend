@@ -1,7 +1,7 @@
 import React from 'react'
 import { formatMoney } from '../../utils/Money'
 
-function PaymentSummary( paymentSummary) {
+function PaymentSummary( {paymentSummary}) {
   return (
   <div className="payment-summary">
             <div className="payment-summary-title">Payment Summary</div>

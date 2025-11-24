@@ -12,14 +12,14 @@ function ProductList({ product, cartData }) {
       productId: product.id,
       quantity,
     });
-      
+
     await cartData();
-    };
-    
-     const selectQuantity = (e) => {
-            const selectedValue = Number(e.target.value);
-            setQuantity(selectedValue);
-          }
+  };
+
+  const selectQuantity = (e) => {
+    const selectedValue = Number(e.target.value);
+    setQuantity(selectedValue);
+  };
 
   return (
     <div key={product.id} className="product-container">
@@ -46,10 +46,7 @@ function ProductList({ product, cartData }) {
       <div className="product-price">{formatMoney(product.priceCents)}</div>
 
       <div className="product-quantity-container">
-        <select
-                  value={quantity}
-                  onChange={selectQuantity}
-        >
+        <select value={quantity} onChange={selectQuantity}>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -70,10 +67,7 @@ function ProductList({ product, cartData }) {
         Added
       </div>
 
-      <button
-        className="add-to-cart-button button-primary"
-        onClick={addToCart}
-      >
+      <button className="add-to-cart-button button-primary" onClick={addToCart}>
         Add to Cart
       </button>
     </div>
