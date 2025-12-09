@@ -5,18 +5,17 @@ import carticon from "../assets/images/icons/cart-icon.png";
 import searchicon from "../assets/images/icons/search-icon.png";
 
 function Header({ cart }) {
-
   let totalQuantity = 0;
 
   cart.forEach((cartItem) => {
-    totalQuantity += cartItem.quantity
-  })
+    totalQuantity += cartItem.quantity;
+  });
 
   return (
     <>
       <div className="header">
         <div className="left-section">
-          <NavLink href="/" className="header-link">
+          <NavLink to="/" className="header-link">
             <img className="logo" src="images/logo-white.png" />
             <img className="mobile-logo" src="images/mobile-logo-white.png" />
           </NavLink>
@@ -37,7 +36,7 @@ function Header({ cart }) {
 
           <NavLink className="cart-link header-link" to="/checkout">
             <img className="cart-icon" src={carticon} />
-            <div className="cart-quantity">{ totalQuantity}</div>
+            <div className="cart-quantity">{totalQuantity}</div>
             <div className="cart-text">Cart</div>
           </NavLink>
         </div>

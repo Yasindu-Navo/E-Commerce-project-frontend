@@ -9,6 +9,8 @@ import NotFoundPage from "./pages/NotFoundPage";
 import { BrowserRouter, Routes, Route } from "react-router";
 import "./App.css";
 
+window.axios = axios;
+
 function App() {
   const [cart, setCart] = useState([]);
   
@@ -26,7 +28,7 @@ function App() {
         <Route index element={<HomePage cart={cart} cartData={cartData} />} />
         <Route path="/" element={<HomePage cart={cart} cartData={cartData} />} />
         <Route path="/checkout" element={<CheckoutPage cart={cart}  cartData={cartData} />} />
-        <Route path="/orders" element={<OrdersPage cart={cart} />} />
+        <Route path="/orders" element={<OrdersPage cart={cart} cartData={cartData}/>} />
         <Route
           path="/tracking/:orderId/:productId"
           element={<TrackingPage cart={cart} />}

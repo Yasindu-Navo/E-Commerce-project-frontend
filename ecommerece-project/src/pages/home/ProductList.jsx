@@ -6,6 +6,7 @@ import checkmark from "../../assets/images/icons/checkmark.png";
 
 function ProductList({ product, cartData }) {
   const [quantity, setQuantity] = useState(1);
+  const[showAddedMessage,setSHowAddedMessage]=useState(false)
 
   const addToCart = async () => {
     await axios.post("api/cart-items", {
@@ -14,6 +15,11 @@ function ProductList({ product, cartData }) {
     });
 
     await cartData();
+    setSHowAddedMessage(true)
+
+    setTimeout(() => {
+      setSHowAddedMessage(false)
+    }, 2000);
   };
 
   const selectQuantity = (e) => {
@@ -62,7 +68,7 @@ function ProductList({ product, cartData }) {
 
       <div className="product-spacer"></div>
 
-      <div className="added-to-cart">
+      <div className="added-to-cart" style={{opacity: showAddedMessage? 1:0,}}>
         <img src={checkmark} />
         Added
       </div>
