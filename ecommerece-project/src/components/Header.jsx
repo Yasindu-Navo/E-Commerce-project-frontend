@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import "./Header.css";
-import { Link, NavLink, useNavigate } from "react-router";
+import { Link, NavLink, useNavigate, useSearchParams } from "react-router";
 import carticon from "../assets/images/icons/cart-icon.png";
 import searchicon from "../assets/images/icons/search-icon.png";
 
 function Header({ cart }) {
 
-  const [searchText, setSearchText] = useState("");
+  const [searchParam] = useSearchParams();
+
+  const search = searchParam.get('search');
+
+
+  const [searchText, setSearchText] = useState(search || '');
   const navigate = useNavigate();
 
   let totalQuantity = 0;
@@ -33,12 +38,31 @@ function Header({ cart }) {
               setSearchText(event.target.value);
             }}
 
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                    navigate(`/?search=${searchText}`);
+              }
+              
+
+              if (event.key === 'Escape') {
+                setSearchText("")
+                navigate("/");
+              }
+            }
+            
+                            
+            }
+            
+            
+
           />
 
           <button className="search-button" onClick={() => {
+         
+            navigate(`/?search=${searchText}`);
+          }}
             
-            navigate(`/search=${searchText}`);
-          }}>
+          >
             <img className="search-icon" src={searchicon} />
           </button>
         </div>

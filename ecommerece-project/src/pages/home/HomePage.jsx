@@ -5,9 +5,14 @@ import Header from "../../components/Header";
 import "./HomePage.css";
 import homeIcon from "../../assets/images/home-favicon.png";
 import ProductsGrid from "./ProductsGrid";
+import { useSearchParams } from "react-router";
 
 function HomePage({ cart , cartData }) {
   const [products, setProducts] = useState([]);
+
+   const [searchParam] = useSearchParams();
+
+  const search = searchParam.get('search');
 
   useEffect(() => {
     //here useEffect use for getting response from BE only at once.
@@ -15,13 +20,15 @@ function HomePage({ cart , cartData }) {
     //here .get is asynchronous code segment that mean it take times to fetch data.
     // so when using .then other codes are running without waiting and inside the code in .then will execute after data fetched
     const getHomeData = async () => {
-      const response = await axios.get("api/products");
+
+      const urlPath= search ? `/api/products?search=${search}` : "/api/products"
+      const response = await axios.get(urlPath);
       setProducts(response.data);
     
     }
   
     getHomeData();
-  }, []);
+  }, [search]);
 
   return (
     <>
