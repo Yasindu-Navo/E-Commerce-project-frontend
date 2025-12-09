@@ -21,6 +21,7 @@ function CartItemDetails({ cartItem, cartData }) {
         <div className="product-quantity">
           <span>
             Quantity:{" "}
+            <input type="text" className="quantity-textbox"></input>
             <span className="quantity-label">{cartItem.quantity}</span>
           </span>
           <span className="update-quantity-link link-primary">Update</span>
