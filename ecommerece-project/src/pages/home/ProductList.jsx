@@ -34,6 +34,7 @@ function ProductList({ product, cartData }) {
           className="product-image"
           alt="product-image"
           src={product.image}
+          data-testid = "product-image"
         />
       </div>
 
