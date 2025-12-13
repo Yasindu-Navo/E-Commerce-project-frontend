@@ -1,15 +1,19 @@
-import { describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import ProductList from "./ProductList";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import axios from "axios";
 
-
-vi.mock('axios');
+vi.mock("axios");
 
 describe("ProductList component", () => {
-  it("display the product details correctly", () => {
-    const product = {
+  let product;
+
+  //create a fake function as cartData function is backend connect function
+  let cartData = vi.fn();
+
+  beforeEach(() => {
+    product = {
       id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
       image: "images/products/athletic-cotton-socks-6-pairs.jpg",
       name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
@@ -19,11 +23,13 @@ describe("ProductList component", () => {
       },
       priceCents: 1090,
       keywords: ["socks", "sports", "apparel"],
-    };
+      };
+      
+      cartData = vi.fn();
+  });
 
-    //create a fake function as cartData function is backend connect function
-    const cartData = vi.fn();
-
+    
+  it("display the product details correctly", () => {
     render(<ProductList product={product} cartData={cartData} />);
 
     expect(
@@ -38,37 +44,18 @@ describe("ProductList component", () => {
     );
   });
 
-  it("add product to the cart", async() => {
-    const product = {
-      id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-      image: "images/products/athletic-cotton-socks-6-pairs.jpg",
-      name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
-      rating: {
-        stars: 4.5,
-        count: 87,
-      },
-      priceCents: 1090,
-      keywords: ["socks", "sports", "apparel"],
-    };
+  it("add product to the cart", async () => {
+    render(<ProductList product={product} cartData={cartData} />);
 
-    //create a fake function as cartData function is backend connect function
-    const cartData = vi.fn();
+    const user = userEvent.setup();
+    const addToCartButton = screen.getByTestId("add-to-cart-button");
+    await user.click(addToCartButton);
 
-      render(<ProductList product={product} cartData={cartData} />);
-      
-      const user = userEvent.setup();
-      const addToCartButton = screen.getByTestId('add-to-cart-button');
-     await user.click(addToCartButton);
-      
-      expect(axios.post).toHaveBeenCalledWith(
-          'api/cart-items',
-          {
-              productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
-              quantity: 1
-          }
-      );
+    expect(axios.post).toHaveBeenCalledWith("api/cart-items", {
+      productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+      quantity: 1,
+    });
 
-      expect(cartData).toHaveBeenCalled();
-
+    expect(cartData).toHaveBeenCalled();
   });
 });
